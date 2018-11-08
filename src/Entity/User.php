@@ -18,7 +18,7 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $username;
 
@@ -28,9 +28,10 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Role", inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $role_id;
+    private $role;
 
     public function getId(): ?int
     {
@@ -61,14 +62,14 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getRoleId(): ?int
+    public function getRole(): ?Role
     {
-        return $this->role_id;
+        return $this->role;
     }
 
-    public function setRoleId(int $role_id): self
+    public function setRole(Role $role): self
     {
-        $this->role_id = $role_id;
+        $this->role = $role;
 
         return $this;
     }

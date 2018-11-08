@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,22 +20,32 @@ class Role
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $rolename;
+    private $name;
+
+    private $users;
+
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getRolename(): ?string
+    public function getName(): ?string
     {
-        return $this->rolename;
+        return $this->name;
     }
 
-    public function setRolename(string $rolename): self
+    public function setName(string $name): self
     {
-        $this->rolename = $rolename;
+        $this->name = $name;
 
         return $this;
     }
+
+
 }
