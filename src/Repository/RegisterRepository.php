@@ -19,6 +19,8 @@ class RegisterRepository extends ServiceEntityRepository
         parent::__construct($registry, Register::class);
     }
 
+
+
     // /**
     //  * @return Register[] Returns an array of Register objects
     //  */
